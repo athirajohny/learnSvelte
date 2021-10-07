@@ -1,31 +1,28 @@
 <script>
-	let color = 'blue';
-	let fname = 'Athira';
-	let lname = 'Johny';
-
-	//reactive value
-    $: fullName = `${fname} ${lname}`;
-	//reactive statments
-	$: {
-    console.log(color);
-    console.log(fullName);
-  }
-	
-	const changeColor = (e) =>{
-		color = e.target.value
-	};
+	let people = [
+		{name:'Athira',color:'yellow',age:23, id:1},
+		{name:'Femi',color:'blue',age:19, id:2},
+		{name:'Felix',color:'red',age:19, id:3},
+	];
 </script>
 
 
 
 
 <main>
-	<p style="color: {color};"> {fullName} </p>
-	<input type="text" bind:value={color}> 
-	<input type="text" bind:value={fname}>
-	<input type="text" bind:value={lname}>
+	<!-- manually -->
+	<div>
+		{people[1].name} <p>{people[1].color}</p>
+	</div>
 
-
+	<!-- for each loop -->
+	{#each people as person}
+	<div>
+		<p>Hi I'm {person.name}, {person.age} years old, favourite colour is {person.color}</p>
+	</div>
+	{:else}
+	<p>There are no people to show..</p>
+	{/each}
 </main>
 
 
